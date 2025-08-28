@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Readify – Smart Book Library</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container header__inner">
+            <h1 class="brand">📚 Readify</h1>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#featured">Featured</a>
+                <a href="#arrivals">Arrivals</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#blogs">Blogs</a>
+                <a href="#library">Library</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Welcome to Readify</h2>
+                <p>Your personal smart book library — Add, search, borrow, and explore.</p>
+                <a href="#library" class="btn">Go to Library</a>
+            </div>
+        </section>
+
+        <!-- Featured Books -->
+        <section id="featured" class="section">
+            <div class="container">
+                <h2 class="section__title">🌟 Featured Books</h2>
+                <div class="grid books-grid">
+                    <div class="book-card">
+                        <h3>Atomic Habits</h3>
+                        <p>James Clear</p>
+                    </div>
+                    <div class="book-card">
+                        <h3>The Alchemist</h3>
+                        <p>Paulo Coelho</p>
+                    </div>
+                    <div class="book-card">
+                        <h3>Ikigai</h3>
+                        <p>Héctor García</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section id="arrivals" class="section alt">
+            <div class="container">
+                <h2 class="section__title">🆕 New Arrivals</h2>
+                <div class="grid books-grid" id="arrivalsGrid">
+                    <!-- JS will load new arrivals -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section id="reviews" class="section">
+            <div class="container">
+                <h2 class="section__title">💬 Reviews</h2>
+                <div class="grid reviews-grid">
+                    <div class="review">
+                        <p>"Readify made managing my books so simple!"</p>
+                        <span>- Ayesha</span>
+                    </div>
+                    <div class="review">
+                        <p>"Best personal library system ever."</p>
+                        <span>- Hamza</span>
+                    </div>
+                    <div class="review">
+                        <p>"I can finally track what I borrow and read."</p>
+                        <span>- Sara</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blogs -->
+        <section id="blogs" class="section alt">
+            <div class="container">
+                <h2 class="section__title">📝 Blogs</h2>
+                <div class="grid blogs-grid">
+                    <article class="blog">
+                        <h3>5 Books to Change Your Life</h3>
+                        <p>Discover life-changing reads you must add to your collection.</p>
+                    </article>
+                    <article class="blog">
+                        <h3>How to Build a Reading Habit</h3>
+                        <p>Tips on reading daily and staying consistent.</p>
+                    </article>
+                    <article class="blog">
+                        <h3>Top 10 Fiction Classics</h3>
+                        <p>A journey through the most loved novels in history.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Library Management (Your Existing System) -->
+        <section id="library" class="section">
+            <div class="container">
+                <h2 class="section__title">📖 Manage Your Library</h2>
+                <div class="grid">
+                    <!-- Add / Edit Form -->
+                    <section class="card">
+                        <h3 id="formTitle">Add a Book</h3>
+                        <form id="bookForm" class="form" autocomplete="off">
+                            <input id="idField" type="hidden" />
+                            <label>Title <input id="title" required /></label>
+                            <label>Author <input id="author" required /></label>
+                            <label>Category <input id="category" required /></label>
+                            <label>Year <input id="year" type="number" required /></label>
+                            <div class="form__row">
+                                <button class="btn" type="submit">Save</button>
+                                <button class="btn btn--ghost" type="reset" id="cancelEditBtn" hidden>Cancel</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Filters -->
+                    <section class="card">
+                        <h3>Find Books</h3>
+                        <input id="searchInput" placeholder="Search by title or author…" />
+                        <select id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="available">Available</option>
+                            <option value="borrowed">Borrowed</option>
+                        </select>
+                    </section>
+
+                    <!-- Books -->
+                    <section class="card card--wide">
+                        <h3>Book Collection <span id="countBadge" class="badge">0</span></h3>
+                        <div class="table-wrap">
+                            <table class="table" id="booksTable">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Year</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="booksTbody"></tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">Made with ❤️ — Readify | Vanilla HTML/CSS/JS</div>
+    </footer>
+
+    <template id="rowTpl">
+        <tr>
+            <td class="t-title"></td>
+            <td class="t-author"></td>
+            <td class="t-category"></td>
+            <td class="t-year"></td>
+            <td class="t-status"></td>
+            <td class="t-actions"></td>
+        </tr>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
